@@ -19,7 +19,7 @@ class Netlistsvg < Formula
   end
 
   test do
-    (testpath/"dff.v").write <<~EOS
+    (testpath/"dff.v").write <<~VLANG
       module DFF (output reg Q, input C, D, R);
       always @(posedge C)
         if (~R) begin
@@ -28,7 +28,7 @@ class Netlistsvg < Formula
             Q <= D;
         end
       endmodule
-    EOS
+    VLANG
     system "yosys -q -p \"prep -top DFF; write_json dff.json\" dff.v"
     system bin/"netlistsvg", "dff.json", "-o", "dff.svg"
     assert_predicate testpath/"dff.svg", :exist?

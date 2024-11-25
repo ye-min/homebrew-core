@@ -31,7 +31,7 @@ class Bibutils < Formula
   end
 
   test do
-    (testpath/"test.bib").write <<~EOS
+    (testpath/"test.bib").write <<~TEX
       @article{Homebrew,
           title   = {Something},
           author  = {Someone},
@@ -40,7 +40,7 @@ class Bibutils < Formula
           number  = {2},
           pages   = {3--4}
       }
-    EOS
+    TEX
 
     system bin/"bib2xml", "test.bib"
   end

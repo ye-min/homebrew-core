@@ -26,11 +26,11 @@ class Folderify < Formula
 
   test do
     # Write an example icon to a file.
-    (testpath/"test.svg").write <<~EOS
+    (testpath/"test.svg").write <<~XML
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="40" fill="transparent" stroke="black" stroke-width="20" />
       </svg>
-    EOS
+    XML
 
     # folderify applies the test icon to a folder
     system bin/"folderify", "test.svg", testpath.to_s

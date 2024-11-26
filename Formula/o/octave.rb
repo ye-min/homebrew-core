@@ -147,11 +147,11 @@ class Octave < Formula
     # This is supposed to crash octave if there is a problem with BLAS
     system bin/"octave", "--eval", "single ([1+i 2+i 3+i]) * single ([ 4+i ; 5+i ; 6+i])"
     # Test basic compilation
-    (testpath/"oct_demo.cc").write <<~EOS
+    (testpath/"oct_demo.cc").write <<~CPP
       #include <octave/oct.h>
       DEFUN_DLD (oct_demo, args, /*nargout*/, "doc str")
       { return ovl (42); }
-    EOS
+    CPP
     system bin/"octave", "--eval", <<~EOS
       mkoctfile ('-v', '-std=c++11', '-L#{lib}/octave/#{version}', 'oct_demo.cc');
       assert(oct_demo, 42)

@@ -50,7 +50,7 @@ class OpentelemetryCpp < Formula
   end
 
   test do
-    (testpath/"test.cc").write <<~EOS
+    (testpath/"test.cc").write <<~CPP
       #include "opentelemetry/sdk/trace/simple_processor.h"
       #include "opentelemetry/sdk/trace/tracer_provider.h"
       #include "opentelemetry/trace/provider.h"
@@ -76,7 +76,7 @@ class OpentelemetryCpp < Formula
         auto tracer = provider->GetTracer("foo_library", "1.0.0");
         auto scoped_span = trace_api::Scope(tracer->StartSpan("test"));
       }
-    EOS
+    CPP
     system ENV.cxx, "test.cc", "-std=c++17",
                     "-DHAVE_ABSEIL",
                     "-I#{include}", "-L#{lib}",

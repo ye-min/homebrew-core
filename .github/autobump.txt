@@ -2505,6 +2505,7 @@ restic
 restview
 resvg
 retire
+reveal-md
 revive
 rex
 rgbds

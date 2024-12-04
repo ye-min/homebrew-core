@@ -488,7 +488,7 @@ class Llvm < Formula
   def write_config_files(macos_version, kernel_version, arch)
     clang_config_file_dir.mkpath
 
-    arches = Set.new([:arm64, :x86_64])
+    arches = Set.new([:arm64, :x86_64, :aarch64])
     arches << arch
     sysroot = if macos_version >= "10.14" || (macos_version.blank? && kernel_version.blank?)
       "#{MacOS::CLT::PKG_PATH}/SDKs/MacOSX#{macos_version}.sdk"
@@ -503,7 +503,7 @@ class Llvm < Formula
       arches.each do |target_arch|
         config_file = "#{target_arch}-apple-#{system}#{version}.cfg"
         (clang_config_file_dir/config_file).atomic_write <<~CONFIG
-          --sysroot=#{sysroot}
+          -isysroot #{sysroot}
         CONFIG
       end
     end
